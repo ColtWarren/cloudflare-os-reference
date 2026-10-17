@@ -192,7 +192,8 @@ export default function BlueprintList() {
     if (!file) return
     setUploading(true)
     try {
-      await authenticatedApi.importBlueprint(file.stream() as ReadableStream<Uint8Array>)
+      const api = await authenticatedApi
+      await api.importBlueprint(file.stream() as ReadableStream<Uint8Array>)
       toasts.add({ title: 'Blueprint uploaded', variant: 'success' })
       load()
     } catch (err) {
